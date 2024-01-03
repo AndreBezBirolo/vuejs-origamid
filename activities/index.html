@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <div id="shorts">
+    <p>shorts - $ <span>{{ price }}</span></p>
+    <button @click="qnt++">Add</button>
+    <button @click="qnt--">Remove</button>
+    <p>Qnt: <span>{{ qnt }}</span></p>
+    <p>Total: <span>{{ price * qnt }}</span></p>
+  </div>
+
+  <div>
+    <p>shirts - $ <span class="price"></span></p>
+    <button class="add">Add</button>
+    <button class="remove">Remove</button>
+    <p>Qnt: <span class="qnt"></span></p>
+    <p>Total: <span class="totalPrice"></span></p>
+  </div>
+
+</div>
+
+<script>
+
+  const vm = new Vue({
+    el: '#shorts',
+    data: {
+      price: 69,
+      qnt: 0
+    }
+  })
+
+  const data = {
+    price: 49,
+    qnt: 0
+  }
+
+  const price = document.querySelector('.price')
+  const qnt = document.querySelector('.qnt')
+  const totalPrice = document.querySelector('.totalPrice')
+  const addBtn = document.querySelector('.add')
+  const removeBtn = document.querySelector('.remove')
+
+  price.innerText = data.price
+  totalPrice.innerText = data.price * data.qnt
+  qnt.innerText = data.qnt
+
+  function increment() {
+    data.qnt++
+    updateUI()
+  }
+
+  function decrement() {
+    data.qnt--
+    updateUI()
+  }
+
+  function updateUI() {
+    qnt.innerText = data.qnt
+    totalPrice.innerText = data.qnt * data.price
+  }
+
+  addBtn.addEventListener('click', increment)
+  removeBtn.addEventListener('click', decrement)
+
+</script>
+</body>
+</html>
